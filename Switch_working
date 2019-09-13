@@ -1,0 +1,365 @@
+#include <Adafruit_NeoPixel.h>
+  
+#ifdef __AVR__
+  #include <avr/power.h>
+#endif
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(8, 5, NEO_GRB + NEO_KHZ800); ///pin 5
+long previousMillis = 0;
+unsigned long currentMillis;
+long interval = 1000; 
+int x;
+int RedLED = -5; 
+int Points = 0; 
+int IN0 = 0;
+int IN1 = 0;
+int IN2 = 0;
+int IN3 = 0;
+int IN4 = 0;
+int IN5 = 0;
+int IN6 = 0;
+int IN7 = 0;
+int CURRENT = 7;
+int holder=0;
+void setup() {
+  Serial.begin(9600);
+  randomSeed(analogRead(2)); //reads a floating pin to start from a random choice
+holder = random(0,7); //chooses the first target LED
+  if (holder=0);
+ { holder = random(0,7);}
+ strip.begin();
+ strip.setBrightness(100);
+ // strip.show();
+pinMode(4, OUTPUT); //speaker pin
+pinMode(6,INPUT); //when connected to 5V will read 1
+pinMode(7,INPUT); //use a 10k pulldown resistor
+pinMode(8,INPUT);
+pinMode(9,INPUT);
+pinMode(10,INPUT);
+pinMode(11,INPUT);
+pinMode(12,INPUT);
+pinMode(3,INPUT);
+LOSER();
+}
+
+void loop() {
+   IN0 = digitalRead(6);
+   IN1 =  digitalRead(7);
+   IN2 =  digitalRead(8);
+   IN3 =  digitalRead(9);  
+   IN4 =  digitalRead(10); 
+   IN5 =  digitalRead(11);  
+   IN6 =  digitalRead(12); 
+   IN7 =  digitalRead(3); 
+ currentMillis = millis();
+ if(currentMillis - previousMillis > interval) {
+   // save the last time you blinked the LED 
+   previousMillis = currentMillis;
+   RedLED = RedLED - 15;
+   Serial.println(RedLED);
+   if(RedLED <0)
+   {
+    LOSER();
+    }
+ }
+ 
+if (IN0==1){
+  CURRENT = 0;
+  if (CURRENT == holder)
+  {
+  WINNER();  
+  }
+  //Serial.println("CURRENT=0");
+      strip.setPixelColor(0, 0, 0, 255);
+      strip.setPixelColor(1, RedLED, 0, 0);
+      strip.setPixelColor(2, RedLED, 0, 0);
+      strip.setPixelColor(3, RedLED, 0, 0);
+      strip.setPixelColor(4, RedLED, 0, 0);
+      strip.setPixelColor(5, RedLED, 0, 0);
+      strip.setPixelColor(6, RedLED, 0, 0);
+      strip.setPixelColor(7, RedLED, 0, 0);
+      strip.setPixelColor(holder, 0, 255, 0);
+   strip.show(); 
+   //delay(500);
+}
+if (IN1==1){
+  CURRENT = 1;
+  if (CURRENT == holder)
+  {
+  WINNER();  
+  }
+   //Serial.println("CURRENT=1");
+   strip.setPixelColor(0, RedLED, 0, 0);
+      strip.setPixelColor(1, 0, 0, 255);
+      strip.setPixelColor(2, RedLED, 0, 0);
+      strip.setPixelColor(3, RedLED, 0, 0);
+      strip.setPixelColor(4, RedLED, 0, 0);
+      strip.setPixelColor(5, RedLED, 0, 0);
+      strip.setPixelColor(6, RedLED, 0, 0);
+      strip.setPixelColor(7, RedLED, 0, 0);
+      strip.setPixelColor(holder, 0, 255, 0);
+   strip.show(); 
+  // delay(500);
+}
+if (IN2==1){
+  CURRENT = 2;
+  if (CURRENT == holder)
+  {
+  WINNER();  
+  }
+   //Serial.println("CURRENT=2");
+   strip.setPixelColor(0, RedLED, 0, 0);
+      strip.setPixelColor(1, RedLED, 0, 0);
+      strip.setPixelColor(2, 0, 0, 255);
+      strip.setPixelColor(3, RedLED, 0, 0);
+      strip.setPixelColor(4, RedLED, 0, 0);
+      strip.setPixelColor(5, RedLED, 0, 0);
+      strip.setPixelColor(6, RedLED, 0, 0);
+      strip.setPixelColor(7, RedLED, 0, 0);
+      strip.setPixelColor(holder, 0, 255, 0);
+      strip.show(); 
+  // delay(500);
+}
+if (IN3==1){
+  CURRENT = 3;
+  if (CURRENT == holder)
+  {
+  WINNER();  
+  }
+   strip.setPixelColor(0, RedLED, 0, 0);
+      strip.setPixelColor(1, RedLED, 0, 0);
+      strip.setPixelColor(2, RedLED, 0, 0);
+      strip.setPixelColor(3, 0, 0, 255);
+      strip.setPixelColor(4, RedLED, 0, 0);
+      strip.setPixelColor(5, RedLED, 0, 0);
+      strip.setPixelColor(6, RedLED, 0, 0);
+      strip.setPixelColor(7, RedLED, 0, 0);
+      strip.setPixelColor(holder, 0, 255, 0);
+      strip.show(); 
+     // delay(500);
+}
+if (IN4==1){
+  CURRENT = 4;
+  if (CURRENT == holder)
+  {
+  WINNER();  
+  }
+   //Serial.println("CURRENT=4");
+   strip.setPixelColor(0, 255, 0, 0);
+      strip.setPixelColor(1, RedLED, 0, 0);
+      strip.setPixelColor(2, RedLED, 0, 0);
+      strip.setPixelColor(3, RedLED, 0, 0);
+      strip.setPixelColor(4, 0, 0, 255);
+      strip.setPixelColor(5, RedLED, 0, 0);
+      strip.setPixelColor(6, RedLED, 0, 0);
+      strip.setPixelColor(7, RedLED, 0, 0);
+      strip.setPixelColor(holder, 0, 255, 0);
+      strip.show(); 
+     // delay(500);
+}
+if (IN5==1){
+  CURRENT = 5;
+  if (CURRENT == holder)
+  {
+  WINNER();  
+  }
+  // Serial.println("CURRENT=5");
+   strip.setPixelColor(0, RedLED, 0, 0);
+      strip.setPixelColor(1, RedLED, 0, 0);
+      strip.setPixelColor(2, RedLED, 0, 0);
+      strip.setPixelColor(3, RedLED, 0, 0);
+      strip.setPixelColor(4, RedLED, 0, 0);
+      strip.setPixelColor(5, 0, 0, 255);
+      strip.setPixelColor(6, RedLED, 0, 0);
+      strip.setPixelColor(7, RedLED, 0, 0);
+      strip.setPixelColor(holder, 0, 255, 0);
+   strip.show(); 
+ // delay(500);
+
+}
+if (IN6==1){
+  CURRENT = 6;
+  if (CURRENT == holder)
+  {
+  WINNER();  
+  }
+  // Serial.println("CURRENT=6");
+   strip.setPixelColor(0, 255, 0, 0);
+      strip.setPixelColor(1, RedLED, 0, 0);
+      strip.setPixelColor(2, RedLED, 0, 0);
+      strip.setPixelColor(3, RedLED, 0, 0);
+      strip.setPixelColor(4, RedLED, 0, 0);
+      strip.setPixelColor(5, RedLED, 0, 0);
+      strip.setPixelColor(6, 0, 0, 255);
+      strip.setPixelColor(7, RedLED, 0, 0);
+      strip.setPixelColor(holder, 0, 255, 0);
+      strip.show(); 
+   //   delay(500);
+}
+if (IN7==1){
+  CURRENT = 7;
+  if (CURRENT == holder)
+  {
+  WINNER();  
+  }
+   //Serial.println("CURRENT=7");
+      strip.setPixelColor(0, RedLED, 0, 0);
+      strip.setPixelColor(1, RedLED, 0, 0);
+      strip.setPixelColor(2, RedLED, 0, 0);
+      strip.setPixelColor(3, RedLED, 0, 0);
+      strip.setPixelColor(4, RedLED, 0, 0);
+      strip.setPixelColor(5, RedLED, 0, 0);
+      strip.setPixelColor(6, RedLED, 0, 0);
+      strip.setPixelColor(7,0, 0, 255);
+      strip.setPixelColor(holder, 0, 255, 0);
+   strip.show(); 
+  // delay(500);
+}
+}
+
+//Serial.print(CURRENT);
+void WINNER()
+{
+  strip.setPixelColor(0, RedLED, 0, 0);
+      strip.setPixelColor(1, RedLED, 0, 0);
+      strip.setPixelColor(2, RedLED, 0, 0);
+      strip.setPixelColor(3, RedLED, 0, 0);
+      strip.setPixelColor(4, RedLED, 0, 0);
+      strip.setPixelColor(5, RedLED, 0, 0);
+      strip.setPixelColor(6, RedLED, 0, 0);
+      strip.setPixelColor(7,RedLED, 0, 0);
+      strip.setPixelColor(holder, 255, 255, 255);
+   strip.show(); 
+   tone(4,1319,125);
+  delay(130);
+  tone(4,1568,125);
+  delay(130);
+  tone(4,2637,125);
+  delay(130);
+  tone(4,2093,125);
+  delay(130);
+  tone(4,2349,125);
+  delay(130);
+  tone(4,3136,125);
+  delay(125);
+  noTone(4);
+RedLED= RedLED +8;
+Points = Points + 1;
+      strip.setPixelColor(0, 0, 255, 0);
+      strip.setPixelColor(1, 0, 255, 0);
+      strip.setPixelColor(2, 0, 255, 0);
+      strip.setPixelColor(3, 0, 255, 0);
+      strip.setPixelColor(4, 0, 255, 0);
+      strip.setPixelColor(5, 0, 255, 0);
+      strip.setPixelColor(6, 0, 255, 0);
+      strip.setPixelColor(7, 0, 255, 0);
+       strip.show();
+      delay(200);
+        strip.setPixelColor(0, 0, 0, 0);
+      strip.setPixelColor(1, 0, 0, 0);
+      strip.setPixelColor(2, 0, 0, 0);
+      strip.setPixelColor(3, 0, 0, 0);
+      strip.setPixelColor(4, 0, 0, 0);
+      strip.setPixelColor(5, 0, 0, 0);
+      strip.setPixelColor(6, 0, 0, 0);
+      strip.setPixelColor(7, 0, 0, 0);
+       strip.show();
+      delay(200);
+      strip.setPixelColor(0, 0, 255, 0);
+      strip.setPixelColor(1, 0, 255, 0);
+      strip.setPixelColor(2, 0, 255, 0);
+      strip.setPixelColor(3, 0, 255, 0);
+      strip.setPixelColor(4, 0, 255, 0);
+      strip.setPixelColor(5, 0, 255, 0);
+      strip.setPixelColor(6, 0, 255, 0);
+      strip.setPixelColor(7, 0, 255, 0);
+       strip.show();
+      delay(200);
+        strip.setPixelColor(0, 0, 0, 0);
+      strip.setPixelColor(1, 0, 0, 0);
+      strip.setPixelColor(2, 0, 0, 0);
+      strip.setPixelColor(3, 0, 0, 0);
+      strip.setPixelColor(4, 0, 0, 0);
+      strip.setPixelColor(5, 0, 0, 0);
+      strip.setPixelColor(6, 0, 0, 0);
+      strip.setPixelColor(7, 0, 0, 0);
+       strip.show();
+      delay(200);
+       strip.setPixelColor(0, 0, 255, 0);
+      strip.setPixelColor(1, 0, 255, 0);
+      strip.setPixelColor(2, 0, 255, 0);
+      strip.setPixelColor(3, 0, 255, 0);
+      strip.setPixelColor(4, 0, 255, 0);
+      strip.setPixelColor(5, 0, 255, 0);
+      strip.setPixelColor(6, 0, 255, 0);
+      strip.setPixelColor(7, 0, 255, 0);
+       strip.show();
+      do {holder = random(0,7);
+      strip.setPixelColor(0, 255, 0, 0);
+      strip.setPixelColor(1, 255, 0, 0);
+      strip.setPixelColor(2, 255, 0, 0);
+      strip.setPixelColor(3, 255, 0, 0);
+      strip.setPixelColor(4, 255, 0, 0);
+      strip.setPixelColor(5, 255, 0, 0);
+      strip.setPixelColor(6, 255, 0, 0);
+      strip.setPixelColor(7, 255, 0, 0);
+      strip.setPixelColor(holder, 0, 255, 0);
+      strip.show();    
+      }
+      while (CURRENT == holder);
+  }
+   void LOSER()
+   {
+      strip.setPixelColor(0, 0, 0, 0);
+      strip.setPixelColor(1, 0, 0, 0);
+      strip.setPixelColor(2, 0, 0, 0);
+      strip.setPixelColor(3, 0, 0, 0);
+      strip.setPixelColor(4, 0, 0, 0);
+      strip.setPixelColor(5, 0, 0, 0);
+      strip.setPixelColor(6, 0, 0, 0);
+      strip.setPixelColor(7, 0, 0, 0);
+      strip.show();    
+   for (int i=0; i<Points; i++)
+   {
+    strip.setPixelColor(((i%8)-1),0, 0, 0);
+    strip.setPixelColor((i%8),0, 255, 0);
+      strip.show(); 
+      tone(4,392,35);
+  delay(35);
+  tone(4,784,35);
+  delay(35);
+  tone(4,1568,35);
+  delay(35);
+  noTone(4);
+      delay(50);
+   strip.setPixelColor(((i%8)-1),0, 0, 0);
+   strip.setPixelColor((i%8),0, 0, 0);
+      strip.show();    
+      delay(50);
+   }
+      do {
+        RedLED=255;
+          IN0 = digitalRead(6);
+        if (IN0==1){
+  CURRENT = 0;}
+      strip.setPixelColor(0, 0, 255, 0);
+      strip.setPixelColor(1, 0, 0, 0);
+      strip.setPixelColor(2, 0, 0, 0);
+      strip.setPixelColor(3, 0, 0, 0);
+      strip.setPixelColor(4, 0, 0, 0);
+      strip.setPixelColor(5, 0, 0, 0);
+      strip.setPixelColor(6, 0, 0, 0);
+      strip.setPixelColor(7, 0, 0, 0);
+      Points=0;
+      strip.show();    
+      }
+      while (CURRENT != 0);
+      delay(50);
+  tone(4,988,100);
+  delay(100);
+  tone(4,1319,850);
+  delay(800);
+  noTone(8);
+  delay(1000);
+   }
+   
+ 
